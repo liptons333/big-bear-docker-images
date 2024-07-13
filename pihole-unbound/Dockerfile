@@ -1,4 +1,10 @@
-# Use pihole base image
+# DHCP Helper
+FROM alpine:latest
+RUN apk --no-cache add dhcp-helper
+EXPOSE 67 67/udp
+ENTRYPOINT ["dhcp-helper", "-n"]
+
+# Use pihole app image
 FROM pihole/pihole:2024.06.0
 
 # Set environment variables for Unbound installation
